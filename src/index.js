@@ -12,14 +12,14 @@ import {
   edit,
 } from './addremove';
 
-const mainList = document.getElementById('main-list');
-const loadingIcon = new Image();
-loadingIcon.src = Icon;
+const mainList = document.getElementById('main-list')
 let taskArray = JSON.parse(localStorage.getItem('taskArray') || '[]');
 const forceChange = new Event('change', { bubbles: true });
 
 function paintList() {
   mainList.innerHTML = '';
+  const loadingIcon = new Image();
+  loadingIcon.src = Icon;
   const titleContainer = document.createElement('div');
   const paragraph = document.createElement('p');
   titleContainer.classList.add('title-container');
