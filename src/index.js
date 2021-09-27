@@ -112,14 +112,19 @@ function descriptionListener() {
       inputField.focus();
       const imageChange = document.querySelector(`img[value="${value}"]`);
       const initialImage = imageChange.src;
-      imageChange.addEventListener('click', e => {
-        removeItem(e, taskArray);
-        mainList.dispatchEvent(forceChange);
-      });
       imageChange.src = TrashIcon;
+      const removeListener = (event) => {
+        console.log('test');
+        removeItem(event, taskArray);
+        mainList.dispatchEvent(forceChange);
+      }
+      imageChange.addEventListener('click', removeListener);
       inputField.addEventListener('focusout', (e) => {
+        setTimeout(() => {
+        imageChange.removeEventListener('click', removeListener);
         e.target.outerHTML = initialState;
         imageChange.src = initialImage;
+        }, 20)
       });
       inputField.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
