@@ -138,13 +138,15 @@ function removeAllListener() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', paintList());
-document.addEventListener('DOMContentLoaded', buttonListener);
-document.addEventListener('DOMContentLoaded', itemListener());
-document.addEventListener('DOMContentLoaded', descriptionListener());
-document.addEventListener('DOMContentLoaded', removeAllListener());
-mainList.addEventListener('change', paintList);
+document.addEventListener('DOMContentLoaded', () => {
+  paintList()
+  buttonListener();
+  itemListener();
+  descriptionListener();
+  removeAllListener();  
+});
 mainList.addEventListener('change', () => {
+  paintList()
   buttonListener();
   itemListener();
   descriptionListener();
