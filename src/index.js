@@ -2,9 +2,7 @@ import './style.css';
 import Icon from './loading.png';
 import Icon2 from './verticaldots.png';
 import TrashIcon from './trashcan.png';
-import {
-  changed,
-} from './complete';
+import changed from './complete';
 import {
   removeAll,
   addTask,
@@ -12,7 +10,7 @@ import {
   edit,
 } from './addremove';
 
-const mainList = document.getElementById('main-list')
+const mainList = document.getElementById('main-list');
 let taskArray = JSON.parse(localStorage.getItem('taskArray') || '[]');
 const forceChange = new Event('change', { bubbles: true });
 
@@ -115,9 +113,9 @@ function descriptionListener() {
       imageChange.addEventListener('click', removeListener);
       inputField.addEventListener('focusout', (e) => {
         setTimeout(() => {
-        imageChange.removeEventListener('click', removeListener);
-        e.target.outerHTML = initialState;
-        imageChange.src = initialImage;
+          imageChange.removeEventListener('click', removeListener);
+          e.target.outerHTML = initialState;
+          imageChange.src = initialImage;
         }, 20);
       });
       inputField.addEventListener('keydown', (e) => {
@@ -138,14 +136,14 @@ function removeAllListener() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  paintList()
+  paintList();
   buttonListener();
   itemListener();
   descriptionListener();
-  removeAllListener();  
+  removeAllListener();
 });
 mainList.addEventListener('change', () => {
-  paintList()
+  paintList();
   buttonListener();
   itemListener();
   descriptionListener();
