@@ -3,8 +3,7 @@ import Icon from './loading.png';
 import Icon2 from './verticaldots.png';
 import TrashIcon from './trashcan.png';
 import {
-  checked,
-  unchecked,
+  changed,
 } from './complete';
 import {
   removeAll,
@@ -73,11 +72,7 @@ function buttonListener() {
   const checkboxes = document.querySelectorAll('.list-box');
   Array.from(checkboxes).forEach(box => {
     box.addEventListener('change', (event) => {
-      if (event.target.checked) {
-        checked(event.target.id, taskArray);
-      } else {
-        unchecked(event.target.id, taskArray);
-      }
+      changed(event.target.id, taskArray);
     });
   });
 }
@@ -114,17 +109,16 @@ function descriptionListener() {
       const initialImage = imageChange.src;
       imageChange.src = TrashIcon;
       const removeListener = (event) => {
-        console.log('test');
         removeItem(event, taskArray);
         mainList.dispatchEvent(forceChange);
-      }
+      };
       imageChange.addEventListener('click', removeListener);
       inputField.addEventListener('focusout', (e) => {
         setTimeout(() => {
         imageChange.removeEventListener('click', removeListener);
         e.target.outerHTML = initialState;
         imageChange.src = initialImage;
-        }, 20)
+        }, 20);
       });
       inputField.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
